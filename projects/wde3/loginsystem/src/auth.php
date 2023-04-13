@@ -64,76 +64,25 @@ function current_user()
     return null;
 }
 
-function get_user_image_filename()
-{
-    // Get the current user ID or username
-    $user = current_user();
-    if (!$user) {
-        return null;
+function get_picture() {
+    // Get the username of the currently logged-in user
+    $username = current_user();
+    
+    $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
+
+    $stmt = $pdo->prepare("SELECT picture FROM users WHERE username = :username");
+    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+    $stmt->execute();
+    $picture = $stmt->fetchColumn();
+
+    if ($picture) {
+        header("Content-Type: image/jpeg"); // Change content type to match your image type
+        echo $picture;
+    } else {
+        // If no picture found, return a default profile picture or handle the error in some other way
+        return NULL;
     }
-    
-    // Connect to the database using PDO
-    $dsn = 'mysql:host=localhost:3307;dbname=auth';
-    $username = 'root';
-    $password = '';
-    $pdo = new PDO($dsn, $username, $password);
-    
-    // Retrieve the image filename from the database
-    $stmt = $pdo->prepare('SELECT picture FROM users WHERE username = :username');
-    $stmt->execute(array(':username' => $username));
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-        return null;
-    }
-    $image_filename = $row['picture'];
-    
-    // Close the database connection
-    $pdo = null;
-    
-    // Return the image filename
-    return $image_filename;
 }
-
-function get_user_image()
-{
-    // Get the current user ID or username
-    $user = current_user();
-    if (!$user) {
-        return null;
-    }
-    
-    // Connect to the database using PDO
-    $dsn = 'mysql:host=localhost:3307;dbname=auth';
-    $username = 'root';
-    $password = '';
-    $pdo = new PDO($dsn, $username, $password);
-    
-    // Retrieve the image data from the database
-    $stmt = $pdo->prepare('SELECT picture FROM users WHERE username = :username');
-    $stmt->execute(array(':username' => $username));
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-        return null;
-    }
-    $image_data = $row['picture'];
-    
-    // Determine the MIME type based on the file extension
-    $default_mime_type = 'image/jpeg';
-    $image_extension = pathinfo(get_user_image_filename(), PATHINFO_EXTENSION);
-    if ($image_extension == 'gif') {
-        $default_mime_type = 'image/gif';
-    } elseif ($image_extension == 'png') {
-        $default_mime_type = 'image/png';
-    }
-    
-    // Close the database connection
-    $pdo = null;
-    
-    // Return the image data and MIME type as a data URI
-    return 'data:' . $default_mime_type . ';base64,' . base64_encode($image_data);
-}
-
-
 
 function generate_activation_code(): string
 {

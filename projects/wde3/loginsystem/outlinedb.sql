@@ -65,3 +65,23 @@ CREATE TABLE enrollement
 );
 
 /*==========Insert Table Statements=============*/
+INSERT INTO department VALUES ('AR01', 'Arts'), ('AS01', 'Arts and Science'), ('BU01', 'Business'),
+('BM01', 'Business and Mathematics'), ('SC01', 'Science'), ('PE01', 'Primary Education') 
+
+INSERT INTO program VALUES ('ENL01', 'English and Literature', 'AR01'), 
+('ELH01', 'English Literature and History', 'AR01'), 
+('BEL01', 'Biology and English Literature', 'AS01'),
+('BSP01', 'Biology and Spanish', 'AS01'), 
+('CSC01', 'Computer Science', 'AS01'), 
+('ACC01', 'Accounting', 'BU01'),
+('ACE01', 'Accounting and Economics', 'BU01'),
+('ECO01', 'Economics', 'BU01'),
+('MOB01', 'Management Of Business', 'BU01'),
+('TSM01', 'Tourism Management', 'BU01'),
+('ACM01', 'Accounting and Mathematics', 'BM01'),
+('ECM01', 'Economics and Mathematics', 'BM01'),
+('BCM01', 'Biology and Chemistry', 'SC01'),
+('BMM01', 'Biology and Mathematics', 'SC01'),
+('CMM01', 'Chemistry and Mathematics', 'SC01'),
+('MPY01', 'Mathematics and Physics', 'SC01'),
+('PTE01', 'Primary Teacher Education', 'PE01'); 
