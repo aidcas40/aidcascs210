@@ -1,0 +1,28 @@
+PA3 - PHP Programming [50 points]
+
+Create an index page for the PA3 - PHP Programming page. Use your existing template design and bootstrap to create this page.  [5pts]
+Create the following PHP apps to demonstrate your understanding of PHP. [22.5pts each]
+Fibonacci Series (Looping Structures)
+Automatic Time-of-Day Website background (If Structures)
+
+Fibonacci Series
+Required:
+One input form box. Input Iterations
+One button: Generate Series
+Check for a negative value input, and give error message.
+Output result in presentable format.
+
+Automatic Time-of-Day Website background
+Required:
+Automatically change the background image of your page based on the time of the day.
+Print the time of the day on the page.
+Use the following times of day: (All times are required.)
+Dawn
+Morning
+Noon
+Afternoon
+Evening
+Night
+Midnight
+
+Submit the compressed pa3 folder with all necessary files and folders and save as pa3Yourname.zip. The submitted ZIP file will be used for grading. Ensure that your pages work and that they are linked and updated on your web host.

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+.active>.page-link, .page-link.active {
+  color: var(--bs-pagination-active-color);
+  background-color: #a03d2d!important;
+  border-color: #a03d2d!important;
+}
+
+.form-switch .form-check-input:focus {
+  border-color: rgba(0, 0, 0, 0.25);
+  outline: 0;
+  box-shadow: 255 255 255 0.25 rgba(0, 0, 0, 0);
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(0,0,0,0.25)'/></svg>");
+}
+
+.form-switch .form-check-input:checked {
+  background-color: #a03d2d;
+  border-color: #a03d2d;
+  border: none;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+}
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CS210 - Aiden Castillo - Tables</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../../assets/img/favicon-32x32.png" rel="icon">
+  <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Radio Canada:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../../assets/css/custom.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <!--====== Datatables CSS include ======-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/datatables.min.css"/>
+  
+  <!-- =======================================================
+  * Template Name: MyResume - v4.10.0
+  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body style="background-color: #121212;">
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
+  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><img src="../../assets/img/favicon-56x56.png" class="img-fluid" alt=""></li>
+        <li><a href="http://aidcascs210.byethost15.com/#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        <li><a href="http://aidcascs210.byethost15.com/#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About Me</span></a></li>
+        <li><a href="http://aidcascs210.byethost15.com/#services" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Projects</span></a></li>
+        <!--<li><a href="#resume" class="nav-link scrollto"><i class="bi bi-chat-square-text"></i> <span>Quotes</span></a></li>-->
+        <li><a href="http://aidcascs210.byethost15.com/#portfolio" class="nav-link scrollto"><i class="bi bi-brush"></i><span>Hobbies/Interests</span></a></li>
+        <li><a href="http://aidcascs210.byethost15.com/#quotes" class="nav-link scrollto"><i class="bi bi-chat-square-text"></i> <span>Quotes</span></a></li>
+        <li><a href="http://aidcascs210.byethost15.com/#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+      </ul>
+    </nav><!-- .nav-menu -->
+
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Table Section ======= -->
+    <section id="activities" class="activities">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Associate in Computer Science</h2>
+          <p>This is the Associate in Computer Science program at C.J.C.</p>
+        </div>
+
+        <div class="row mt-2 mb-2">
+          <div class="col-md-11 mx-auto">
+            <h4 class="title text-left mb-0">Semester 1.1</h4>
+            <div class="table-responsive">
+              <table id="table_id1" class="table table-dark table-bordered table-striped table-hover text-center">
+                <thead style="border-top: 1px solid #a03d2d;">
+                  <tr>
+                    <th scope="col" class="text-center" style="width: 20%;">Course Code</th>
+                    <th scope="col" class="text-center" style="width: 35%;">Course Description</th>
+                    <th scope="col" class="text-center" style="width: 25%;">Prerequisite</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Credits</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Completed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS 102</td>
+                    <td>Programming I (Lab)</td>
+                    <td>None</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EN 107</td>
+                    <td>College English I</td>
+                    <td>EN101 if necessary</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MT 105</td>
+                    <td>College Algebra</td>
+                    <td>MT103NC if necessary</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MT 107</td>
+                    <td>Plane Geometry & Trigonometry</td>
+                    <td>MT103NC if necessary</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>PHIL 1014</td>
+                    <td>Introduction to Philosophy</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RMT 101</td>
+                    <td>Research Methods</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td style="border-right: none;"></td>
+                    <td style="border-right: none; border-left: none;"></td>
+                    <td style="border-left: none;" class="text-center">Total Credits</td>
+                    <td class="text-center">21</td>
+                    <td class="text-center"><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3 mb-2">
+          <div class="col-md-11 mx-auto">
+            <h4 class="title text-left mb-0">Semester 1.2</h4>
+            <div class="table-responsive">
+              <table id="table_id2" class="table table-dark table-bordered table-striped table-hover text-center">
+                <thead style="border-top: 1px solid #a03d2d;">
+                  <tr>
+                    <th scope="col" class="text-center" style="width: 20%;">Course Code</th>
+                    <th scope="col" class="text-center" style="width: 35%;">Course Description</th>
+                    <th scope="col" class="text-center" style="width: 25%;">Prerequisite</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Credits</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Completed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS 103</td>
+                    <td>Databases (Lab)</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 106</td>
+                    <td>PC Repair</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 206</td>
+                    <td>Programming II (Lab)</td>
+                    <td>CS102</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EN 108</td>
+                    <td>College English II</td>
+                    <td>EN107</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MT 106</td>
+                    <td>Calculus I</td>
+                    <td>MT105, MT107</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>PSY 1014</td>
+                    <td>Introduction to Psychology</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td style="border-right: none;"></td>
+                    <td style="border-right: none; border-left: none;"></td>
+                    <td style="border-left: none;" class="text-center">Total Credits</td>
+                    <td class="text-center">20</td>
+                    <td class="text-center"><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                     
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row  mt-3 mb-2">
+          <div class="col-md-11 mx-auto">
+            <h4 class="title text-left mb-0">Semester 2.1</h4>
+            <div class="table-responsive">
+              <table id="table_id3" class="table table-dark table-bordered table-striped table-hover text-center">
+                <thead style="border-top: 1px solid #a03d2d;">
+                  <tr>
+                    <th scope="col" class="text-center" style="width: 20%;">Course Code</th>
+                    <th scope="col" class="text-center" style="width: 35%;">Course Description</th>
+                    <th scope="col" class="text-center" style="width: 25%;">Prerequisite</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Credits</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Completed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS 205</td>
+                    <td>Software and System Development</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 207</td>
+                    <td>Programming III (Lab)</td>
+                    <td>CS206</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 209</td>
+                    <td>Networking</td>
+                    <td>None</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 212</td>
+                    <td>Networking Lab</td>
+                    <td>Co-requisite CS209</td>
+                    <td>2</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EN 209</td>
+                    <td>Communication Studies I</td>
+                    <td>EN108</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MT 108</td>
+                    <td>Discrete Mathematics</td>
+                    <td>MT105, MT107</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td style="border-right: none;"></td>
+                    <td style="border-right: none; border-left: none;"></td>
+                    <td style="border-left: none;" class="text-center">Total Credits</td>
+                    <td class="text-center">20</td>
+                    <td class="text-center"><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row  mt-3 mb-2">
+          <div class="col-md-11 mx-auto">
+            <h4 class="title text-left mb-0">Semester 2.2</h4>
+            <div class="table-responsive">
+              <table id="table_id4" class="table table-dark table-bordered table-striped table-hover text-center">
+                <thead style="border-top: 1px solid #a03d2d;">
+                  <tr>
+                    <th scope="col" class="text-center" style="width: 20%;">Course Code</th>
+                    <th scope="col" class="text-center" style="width: 35%;">Course Description</th>
+                    <th scope="col" class="text-center" style="width: 25%;">Prerequisite</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Credits</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Completed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CS 208</td>
+                    <td>Data Structures (Lab)</td>
+                    <td>CS207</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 210</td>
+                    <td>Web development (Lab)</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CS 211</td>
+                    <td>Operating Systems</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EN 210</td>
+                    <td>Communication Studies II</td>
+                    <td>EN209</td>
+                    <td>4</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>HIS 110</td>
+                    <td>Introduction to Belizean History</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SOCI 1014</td>
+                    <td>Introduction to Sociology</td>
+                    <td>None</td>
+                    <td>3</td>
+                    <td><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td style="border-right: none;"></td>
+                    <td style="border-right: none; border-left: none;"></td>
+                    <td style="border-left: none;" class="text-center">Total Credits</td>
+                    <td class="text-center">19</td>
+                    <td class="text-center"><!-- Default switch -->
+                      <div class="form-check form-check-inline form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                      </div>                    
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section-title text-center mt-4 mb-60">
+          <button type="button" class="btn btn-light"><a href="http://aidcascs210.byethost15.com/projects/pa2/"><i class="bi bi-arrow-left-circle"></i> Back to PA2</a></button>
+          <button type="button" class="btn btn-light"><a href="http://aidcascs210.byethost15.com/"><i class="bi bi-house-door"></i> Home</a></button>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Web Development</h3>
+      <p>Website Landing page for CS210, where anyone can see the various practical activities and exercises that I've
+        completed.</p>
+
+      <!-- Section: Links -->
+
+      <!--Grid row-->
+      <div class="row justify-content-md-center">
+        <!--Grid column-->
+        <div class="col-6 col-lg-2 mb-3">
+          <h5>AC</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#hero">Home</a>
+            </li>
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#about">About Me</a>
+            </li>
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#services">Projects</a>
+            </li>
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#portfolio">Hobbies/Interests</a>
+            </li>
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#quotes">Quotes</a>
+            </li>
+            <li>
+              <a href="http://aidcascs210.byethost15.com/#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-6 col-lg-2 mb-3">
+          <h5>Quick Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+            </li>
+            <li>
+              <a href="https://bandcamp.com/" target="_blank">BandCamp</a>
+            </li>
+            <li>
+              <a href="https://anilist.co/home" target="_blank">AniList</a>
+            </li>
+            <li>
+              <a href="https://www.amazon.com/" target="_blank">Amazon</a>
+            </li>
+            <li>
+              <a href="https://www.twitch.tv/" target="_blank">Twitch</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+      <!-- Section: Links -->
+
+      <div class="social-links">
+        <a href="https://twitter.com/?lang=en" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://store.steampowered.com/" target="_blank"><i class="bi bi-steam"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+
+      <div class="copyright">
+        &copy; Copyright <strong><span>MyResume</span></strong>. All Rights Reserved
+      </div>
+      <div class="copyright">
+        The template used for this site <a href="https://bootstrapmade.com/free-html-bootstrap-template-my-resume/"
+          target="_blank">MyResume</a>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: [license-url] -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/ -->
+        Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../../assets/vendor/aos/aos.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../assets/vendor/typed.js/typed.min.js"></script>
+  <script src="../../assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="../../assets/vendor/php-email-form/validate.js"></script>
+  <!--<script src="assets/js/script.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>-->
+
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/main.js"></script>
+
+  <!--====== Datatables jQuery include ======-->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.2/datatables.min.js"></script>
+
+</body>
+
+<script type="text/javascript">
+
+  $(document).ready( function () {
+    $('#table_id1').DataTable();
+  } );
+
+  $(document).ready( function () {
+    $('#table_id2').DataTable();
+  } );
+
+  $(document).ready( function () {
+    $('#table_id3').DataTable();
+  } );
+
+  $(document).ready( function () {
+    $('#table_id4').DataTable();
+  } );
+</script>
+
+</html>
