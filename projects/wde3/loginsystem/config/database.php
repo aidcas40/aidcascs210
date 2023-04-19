@@ -10,4 +10,6 @@ const DB_NAME = 'auth';
 const DB_USER = 'root';
 const DB_PASSWORD = '';
 
+//$pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
+
 ?>

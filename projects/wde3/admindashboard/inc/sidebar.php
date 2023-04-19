@@ -34,12 +34,12 @@
     </a>
     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="tables-general.html">
+        <a href="teacher-list.php">
           <i class="bi bi-circle"></i><span>Teacher List</span>
         </a>
       </li>
       <li>
-        <a href="tables-data.html">
+        <a href="teacher-add.php">
           <i class="bi bi-circle"></i><span>Teacher Add</span>
         </a>
       </li>
@@ -52,12 +52,12 @@
     </a>
     <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="icons-bootstrap.html">
+        <a href="course-list.php">
           <i class="bi bi-circle"></i><span>Course List</span>
         </a>
       </li>
       <li>
-        <a href="icons-remix.html">
+        <a href="course-add.php">
           <i class="bi bi-circle"></i><span>Course Add</span>
         </a>
       </li>

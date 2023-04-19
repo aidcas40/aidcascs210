@@ -1,4 +1,8 @@
-<?php include('inc/header.php'); ?>
+<?php 
+include('inc/header.php');
+require __DIR__ . '/src/student-add.php';
+?>
+
 
 <main id="main" class="main">
 
@@ -22,31 +26,35 @@
           <h5 class="card-title">Student Information</h5>
 
           <!-- General Form Elements -->
-          <form>
+          <form action="student-add.php" method="post">
             <div class="row mb-3">
               <label for="inputText" class="col-sm-2 col-form-label">First Name:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control">
-              </div>
+                <input type="text" name="stud_fname" id="stud_fname" value="<?= $inputs['stud_fname'] ?? '' ?>" 
+                      class="form-control <?= error_class($errors, 'stud_fname') ?>">
+                <small><?= $errors['stud_fname'] ?? '' ?></small>
+            </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-2 col-form-label">Last Name:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control">
-              </div>
+                <input type="text" name="stud_lname" id="stud_lname" value="<?= $inputs['stud_lname'] ?? '' ?>"
+                      class="form-control <?= error_class($errors, 'stud_lname') ?>">
+                <small><?= $errors['stud_lname'] ?? '' ?></small>
+            </div>
             </div>
             <fieldset class="row mb-3">
               <legend class="col-form-label col-sm-2 pt-0">Gender:</legend>
               <div class="col-sm-10">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                  <label class="form-check-label" for="gridRadios1">
+                  <input class="form-check-input" type="radio" name="stud_gender" id="male" value="male" checked>
+                  <label class="form-check-label" for="male">
                     Male
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                  <label class="form-check-label" for="gridRadios2">
+                  <input class="form-check-input" type="radio" name="stud_gender" id="female" value="female">
+                  <label class="form-check-label" for="female">
                     Female
                   </label>
                 </div>
@@ -55,37 +63,47 @@
             <div class="row mb-3">
               <label for="inputDate" class="col-sm-2 col-form-label">Date Of Birth:</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control">
+                <input type="date" name="stud_dob" id="stud_dob" value="<?= $inputs['stud_dob'] ?? '' ?>" 
+                      class="form-control <?= error_class($errors, 'stud_dob') ?>">
+                <small><?= $errors['stud_dob'] ?? '' ?></small>
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputNumber" class="col-sm-2 col-form-label">Age:</label>
               <div class="col-sm-10">
-                <input type="number" id="typeNumber" class="form-control">
+                <input type="number" name="stud_age" id="stud_age" value="<?= $inputs['stud_age'] ?? '' ?>"
+                      class="form-control <?= error_class($errors, 'stud_age') ?>">
+                <small><?= $errors['stud_age'] ?? '' ?></small>
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control">
+                <input type="email" name="stud_email" id="stud_email" value="<?= $inputs['stud_email'] ?? '' ?>" 
+                      class="form-control <?= error_class($errors, 'stud_email') ?>">
+                <small><?= $errors['stud_email'] ?? '' ?></small>
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputNumber" class="col-sm-2 col-form-label">Phone Number:</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control">
+                <input type="number" name="stud_cellnum" id="stud_cellnum" value="<?= $inputs['stud_cellnum'] ?? '' ?>"  
+                      class="form-control  <?= error_class($errors, 'stud_cellnum') ?>">
+                <small><?= $errors['stud_cellnum'] ?? '' ?></small>
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputDate" class="col-sm-2 col-form-label">Enrollment Date:</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control">
+                <input type="date" name="stud_enrolldate" id="stud_enrolldate" value="<?= $inputs['stud_enrolldate'] ?? '' ?>" 
+                      class="form-control <?= error_class($errors, 'stud_enrolldate') ?>">
+                <small><?= $errors['stud_enrolldate'] ?? '' ?></small>
               </div>
             </div>
             <div class="row mb-3">
               <label class="col-sm-2 col-form-label">Academic Level:</label>
               <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="stud_yearlvl" id="stud_yearlvl" aria-label="Default select example">
                   <option selected>Open this select menu</option>
                   <option value="1">1st Year</option>
                   <option value="2">2nd Year</option>
@@ -95,18 +113,27 @@
             <div class="row mb-3">
               <label class="col-sm-2 col-form-label">Program:</label>
               <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="stud_program" id="stud_program" aria-label="Default select example">
                   <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <?php
+                    // Connect to the database and fetch the values from the "program" lookup table
+                    $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
+                    $stmt = $pdo->query("SELECT prog_id, prog_name FROM program");
+
+                    // Loop through the results and generate an <option> element for each row
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="' . $row['prog_id'] . '">' . $row['prog_name'] . '</option>';
+                    }
+                  ?>
                 </select>
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputNumber" class="col-sm-2 col-form-label">Photo:</label>
               <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile" accept="image/*">
+                <input class="form-control" type="file" name="stud_pic" id="stud_pic" accept="image/*" value="<?= $inputs['stud_pic'] ?? '' ?>"
+                        class="form-control <?= error_class($errors, 'stud_pic') ?>">
+                <small><?= $errors['stud_pic'] ?? '' ?></small>
               </div>
             </div>
             <!--<div class="row mb-3">
