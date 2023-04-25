@@ -48,27 +48,27 @@ function register_user(string $email, string $username, string $password, string
 function insert_student(string $stud_fname, string $stud_lname, string $stud_gender, string $stud_dob, int $stud_age, string $stud_email, int $stud_cellnum, string $stud_enrolldate, string $stud_yearlvl, string $stud_program, string $stud_pic): bool
 {
     $sql = 'INSERT INTO student(stud_fname, stud_lname, stud_gender, stud_dob, stud_age, stud_email, stud_cellnum, stud_enrolldate, stud_yearlvl, stud_program, stud_pic)
-            VALUES(:fname, :lname, :gender, :dob, :age, :email, :cellnum, :enrolldate, :yearlvl, :program, :picture)';
+            VALUES(:sfname, :slname, :sgender, :sdob, :sage, :semail, :scellnum, :senrolldate, :syearlvl, :sprogram, :spicture)';
 
     $statement = db()->prepare($sql);
 
-    $statement->bindValue(':fname', $stud_fname);
-    $statement->bindValue(':lname', $stud_lname);
-    $statement->bindValue(':gender', $stud_gender);
-    $statement->bindValue(':dob', $stud_dob);
-    $statement->bindValue(':age', $stud_age);
-    $statement->bindValue(':email', $stud_email);
-    $statement->bindValue(':cellnum', $stud_cellnum);
-    $statement->bindValue(':enrolldate', $stud_enrolldate);
-    $statement->bindValue(':yearlvl', $stud_yearlvl);
-    $statement->bindValue(':program', $stud_program);
-    $statement->bindValue(':picture', $stud_pic, PDO::PARAM_LOB);
+    $statement->bindValue(':sfname', $stud_fname);
+    $statement->bindValue(':slname', $stud_lname);
+    $statement->bindValue(':sgender', $stud_gender);
+    $statement->bindValue(':sdob', $stud_dob);
+    $statement->bindValue(':sage', $stud_age);
+    $statement->bindValue(':semail', $stud_email);
+    $statement->bindValue(':scellnum', $stud_cellnum);
+    $statement->bindValue(':senrolldate', $stud_enrolldate);
+    $statement->bindValue(':syearlvl', $stud_yearlvl);
+    $statement->bindValue(':sprogram', $stud_program);
+    $statement->bindValue(':spicture', $stud_pic, PDO::PARAM_LOB);
 
     return $statement->execute();
 }
 
 /**
-* Insert student
+* Insert teacher
 *
 * @param string $tchr_fname
 * @param string $tchr_lname
@@ -84,23 +84,24 @@ function insert_student(string $stud_fname, string $stud_lname, string $stud_gen
 */
 function insert_teacher(string $tchr_fname, string $tchr_lname, string $tchr_gender, string $tchr_dob, int $tchr_age, string $tchr_email, int $tchr_cellnum, string $tchr_department, string $tchr_pic): bool
 {
-    $sql = 'INSERT INTO teacher(tchr_fname, tchr_lname, tchr_gender, tchr_dob, tchr_age, tchr_email, tchre_cellnum, tchr_department, tchr_pic)
+    $sql = 'INSERT INTO teacher(tchr_fname, tchr_lname, tchr_gender, tchr_dob, tchr_age, tchr_email, tchr_cellnum, tchr_department, tchr_pic)
             VALUES(:fname, :lname, :gender, :dob, :age, :email, :cellnum, :department, :picture)';
 
     $statement = db()->prepare($sql);
 
-    $statement->bindValue(':fname', $tchr_fname);
-    $statement->bindValue(':lname', $tchr_lname);
-    $statement->bindValue(':gender', $tchr_gender);
-    $statement->bindValue(':dob', $tchr_dob);
-    $statement->bindValue(':age', $tchr_age);
-    $statement->bindValue(':email', $tchr_email);
-    $statement->bindValue(':cellnum', $tchr_cellnum);
-    $statement->bindValue(':department', $tchr_department);
-    $statement->bindValue(':picture', $tchr_pic, PDO::PARAM_LOB);
+    $statement->bindParam(':fname', $tchr_fname, PDO::PARAM_STR);
+    $statement->bindParam(':lname', $tchr_lname, PDO::PARAM_STR);
+    $statement->bindParam(':gender', $tchr_gender, PDO::PARAM_STR);
+    $statement->bindParam(':dob', $tchr_dob, PDO::PARAM_STR);
+    $statement->bindParam(':age', $tchr_age, PDO::PARAM_INT);
+    $statement->bindParam(':email', $tchr_email, PDO::PARAM_STR);
+    $statement->bindParam(':cellnum', $tchr_cellnum, PDO::PARAM_INT);
+    $statement->bindParam(':department', $tchr_department, PDO::PARAM_STR);
+    $statement->bindParam(':picture', $tchr_pic, PDO::PARAM_STR);
 
     return $statement->execute();
 }
+
 
 /**
 * Insert student

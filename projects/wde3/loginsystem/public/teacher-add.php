@@ -1,10 +1,10 @@
-<?php 
-include('inc/header.php');
-require __DIR__ . '/../../loginsystem/src/bootstrap.php';
-require __DIR__ . '/src/teacher-add.php';
+<?php
+require __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../src/teacher-add.php';
 require_login();
 ?>
 
+<?php view('header_admin', ['title' => 'CS210 - Aiden Castillo - Dashboard']) ?>
 
 <main id="main" class="main">
 
@@ -136,4 +136,4 @@ require_login();
 
 </main><!-- End #main -->
 
-  <?php include('inc/footer.php'); ?>
+<?php view('footer_admin') ?>

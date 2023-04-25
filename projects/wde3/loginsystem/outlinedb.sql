@@ -41,7 +41,8 @@ CREATE TABLE department
 
 CREATE TABLE course
 (
-    crs_id            varchar(10) NOT NULL PRIMARY KEY,
+    crs_id            int AUTO_INCREMENT PRIMARY KEY,
+    crs_code          varchar(10) NOT NULL,
     crs_title         varchar(25)  NOT NULL,
     crs_credits       int NOT NULL,
     crs_department    varchar(10) NOT NULL REFERENCES department(dep_id)
