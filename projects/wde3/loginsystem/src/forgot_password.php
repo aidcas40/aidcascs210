@@ -11,9 +11,9 @@ class Database
         $username = 'root';
         $password = '';
         // important insert your own database here!!!!!!!
-        /*$dsn = 'mysql:host=sql206.byethost15.com;dbname=b15_33329860_LoginSystem;charset=utf8mb4';
-        $username = 'b15_33329860';
-        $password = '$T0pDawg#54';*/
+        //$dsn = 'mysql:host=sql206.byethost15.com;dbname=b15_33329860_LoginSystem;charset=utf8mb4';
+        //$username = 'b15_33329860';
+        //$password = '$T0pDawg#54';
         try {
             $this->connection = new PDO($dsn, $username, $password);
             $this->connection->setAttribute(
@@ -92,10 +92,12 @@ if (is_post_request()) {
             // set the token and email in the database
             User::set_token($email, $token);
             // create the URL with the embedded token
-
             $url =
-                "http://localhost/aidcascs210/projects/wde3/loginsystem/public/access-account.php?email=$email&token=$token"
+                "http://localhost/projects/wde3/loginsystem/public/access-account.php?email=$email&token=$token"
             ;
+            //$url =
+            //    "http://aidcascs210.byethost15.com/projects/wde3/loginsystem/public/access-account.php?email=$email&token=$token"
+            //;
             // Create the Transport
             $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
                 ->setUsername('aidencastillo41@gmail.com')

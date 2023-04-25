@@ -1,7 +1,7 @@
 <?php
 
 if (is_user_logged_in()) {
-    redirect_to('index.php');
+    redirect_to('index_admin.php');
 }
 
 $errors = [];
@@ -13,7 +13,6 @@ if (is_post_request()) {
         'email' => 'email | required | email | unique: users, email',
         'password' => 'string | required | secure',
         'password2' => 'string | required | same: password',
-        'picture' => 'file| mimetypes:image/jpeg,image/png,image/gif | max:2048 | required',
         'agree' => 'string | required'
     ];
 
@@ -22,9 +21,6 @@ if (is_post_request()) {
         'password2' => [
             'required' => 'Please enter the password again',
             'same' => 'The password does not match'
-        ],
-        'picture' => [
-            'required' => 'You need to choose a profile photo'
         ],
         'agree' => [
             'required' => 'You need to agree to the term of services to register'
@@ -35,14 +31,14 @@ if (is_post_request()) {
 
     if ($errors) {
         redirect_with('register.php', [
-            'inputs' => $inputs, //escape_html($inputs),
+            'inputs' => escape_html($inputs),
             'errors' => $errors
         ]);
     }
 
     $activation_code = generate_activation_code();
 
-    if (register_user($inputs['email'], $inputs['username'], $inputs['password'], $inputs['picture'], $activation_code)) {
+    if (register_user($inputs['email'], $inputs['username'], $inputs['password'], $activation_code)) {
 
         // send the activation email
         send_activation_email($inputs['email'], $activation_code);

@@ -42,13 +42,6 @@ require __DIR__ . '/../src/register.php';
     </div>
 
     <div>
-        <label for="picture">Photo:</label>
-            <input type="file" name="picture" id="picture" accept="image/*" value="<?= $inputs['picture'] ?? '' ?>"
-                class="<?= error_class($errors, 'picture') ?>">
-        <small><?= $errors['picture'] ?? '' ?></small>
-    </div>
-
-    <div>
         <label for="agree">
             <input type="checkbox" name="agree" id="agree" value="checked" <?= $inputs['agree'] ?? '' ?> /> I
             agree

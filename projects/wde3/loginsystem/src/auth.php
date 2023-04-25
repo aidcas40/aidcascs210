@@ -64,26 +64,6 @@ function current_user()
     return null;
 }
 
-function get_picture() {
-    // Get the username of the currently logged-in user
-    $username = current_user();
-    
-    $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
-
-    $stmt = $pdo->prepare("SELECT picture FROM users WHERE username = :username");
-    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
-    $stmt->execute();
-    $picture = $stmt->fetchColumn();
-
-    if ($picture) {
-        header("Content-Type: image/jpeg"); // Change content type to match your image type
-        echo $picture;
-    } else {
-        // If no picture found, return a default profile picture or handle the error in some other way
-        return NULL;
-    }
-}
-
 function generate_activation_code(): string
 {
     return bin2hex(random_bytes(16));
@@ -194,9 +174,7 @@ WHERE email=:email';
 function validate_token($email, $token)
 {
     $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
-    //$pdo = new
-    //!!!!!!!!!!!Important make sure to add your own databasE!!!!!!!!
-    //PDO("mysql:host=sql206.byethost15.com;dbname=b15_33329860_LoginSystem", "b15_33329860", "$T0pDawg#54");
+    //$pdo = new PDO("mysql:host=sql206.byethost15.com;dbname=b15_33329860_LoginSystem", "b15_33329860", '$T0pDawg#54');
     $sql = "SELECT * FROM users WHERE email = :email AND token = :token
 LIMIT 1";
     $stmt = $pdo->prepare($sql);
@@ -230,7 +208,7 @@ function current_email()
     }
     // Get the user's email address from the database
     $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
-    // $pdo = new PDO("mysql:host=sql107.byethost7.com;dbname=b7_33470157_LoginSystem", "b7_33470157", "46kgdjbv");
+    //$pdo = new PDO("mysql:host=sql107.byethost7.com;dbname=b7_33470157_LoginSystem", "b7_33470157", "46kgdjbv");
     $stmt = $pdo->prepare("SELECT email FROM users WHERE username = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['username']);
     $stmt->execute();
@@ -243,7 +221,7 @@ function update_user_password($username, $new_password)
 {
     // Create a PDO instance
     $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
-    // $pdo = new PDO("mysql:host=sql107.byethost7.com;dbname=b7_33470157_LoginSystem","b7_33470157", "46kgdjbv");
+    //$pdo = new PDO("mysql:host=sql107.byethost7.com;dbname=b7_33470157_LoginSystem","b7_33470157", "46kgdjbv");
     $password_hash = password_hash($new_password, PASSWORD_BCRYPT);
     // Prepare and execute the SQL statement to update the user's password
     $stmt = $pdo->prepare("UPDATE users SET password = :new_password WHERE username = :username");

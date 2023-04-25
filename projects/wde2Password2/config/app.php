@@ -5,7 +5,6 @@
 
 const APP_URL = 'http://localhost/aidcascs210/projects/wde2Password2/public';
 const SENDER_EMAIL_ADDRESS = 'aidencastillo41@gmail.com';
-<<<<<<< HEAD
 
 function success_email(string $email): void
 {
@@ -36,6 +35,4 @@ function success_email(string $email): void
     // Send the message
     $result = $mailer->send($message);
 }
-=======
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
 ?>

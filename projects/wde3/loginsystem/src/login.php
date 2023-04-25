@@ -1,7 +1,7 @@
 <?php
 
 if (is_user_logged_in()) {
-    redirect_to('index.php');
+    redirect_to('index_admin.php');
 }
 
 $inputs = [];
@@ -35,8 +35,8 @@ if (is_post_request()) {
     }
 
     // login successfully
-    //redirect_to('index.php');
-    redirect_to('/aidcascs210/projects/wde3/admindashboard/index.php');
+    redirect_to('index_admin.php');
+    //redirect_to('http://aidcascs210.byethost15.com/projects/wde3/admindashboard/index.php');
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');

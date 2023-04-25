@@ -1,6 +1,6 @@
 <?php
 
-//const APP_URL = 'http://aidcascs210.byethost15.com/projects/wde2email/public';
+//const APP_URL = 'http://aidcascs210.byethost15.com/projects/wde3/loginsystem/public';
 //const SENDER_EMAIL_ADDRESS = 'aidencastillo41@gmail.com';
 
 const APP_URL = 'http://localhost/aidcascs210/projects/wde3/loginsystem/public';

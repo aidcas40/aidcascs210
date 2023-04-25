@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 $new_password = [];
 $errors = [];
 $new_password_errors = [];
@@ -43,7 +42,6 @@ if (is_post_request()) {
         ]);
     }
     
-=======
 if (is_user_logged_in()) {
     redirect_to('index.php');
 }
@@ -122,17 +120,16 @@ if (is_post_request()) {
             'errors' => $errors
         ]);
     }
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
+
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
 
-<<<<<<< HEAD
+
 // Check if the password was successfully changed and redirect with a success message
 if (!empty($_GET['success'])) {
     $success_message = $_GET['success'];
     redirect_with_message('reset_password.php', $success_message, 'success');
 }
-=======
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
+
 ?>
