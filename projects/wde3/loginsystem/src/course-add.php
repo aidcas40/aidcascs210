@@ -1,7 +1,7 @@
 <?php
 
 /* if (is_user_logged_in()) {
-    redirect_to('index_admin.php');
+redirect_to('index_admin.php');
 } */
 
 $errors = [];
@@ -35,18 +35,19 @@ if (is_post_request()) {
 
     if ($errors) {
         redirect_with('course-add.php', [
-            'inputs' => $inputs, //escape_html($inputs),
+            'inputs' => $inputs,
+            //escape_html($inputs),
             'errors' => $errors
         ]);
     }
 
     if (insert_course($inputs['crs_code'], $inputs['crs_title'], $inputs['crs_credits'], $inputs['crs_program'])) {
-        
-        redirect_for_admin('course-add.php', 'Successfully added course.');
-        // redirect_with_message(
-        //     'course-add.php',
-        //     'Successfully added course.'
-        // );
+
+        $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");
+        $stmt = $pdo->query("SELECT MAX(crs_id) AS max_id FROM course");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $crs_id = $row['max_id'];
+        redirect_to("course-update.php?crs_id=$crs_id");
     }
 
 } else if (is_get_request()) {

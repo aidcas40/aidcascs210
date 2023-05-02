@@ -16,5 +16,4 @@ $host = "localhost:3307";
 $user = "root";
 $password = "";
 $db = "auth";
-
 ?>

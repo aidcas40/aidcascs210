@@ -56,7 +56,10 @@ if (is_post_request()) {
 
     $result = mysqli_query($data, $sql);
     
-    redirect_for_admin('student-add.php', 'Successfully added student.');
+    if ($result) {
+        $stud_id = mysqli_insert_id($data);
+        redirect_to("student-update.php?stud_id=$stud_id");
+    }
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');

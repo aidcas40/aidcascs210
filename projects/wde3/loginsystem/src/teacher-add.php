@@ -55,12 +55,12 @@ if (is_post_request()) {
 
     $result = mysqli_query($data, $sql);
     
-    redirect_with_message(
-        'teacher-add.php',
-        'Successfully added teacher.'
-    );
+    if ($result) {
+        $tchr_id = mysqli_insert_id($data);
+        redirect_to("teacher-update.php?tchr_id=$tchr_id");
+    }
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
-}
+} 
 ?>

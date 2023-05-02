@@ -277,5 +277,4 @@ function get_user_picture() {
     // If the user is not logged in, return null
     return null;
 }
-
 ?>

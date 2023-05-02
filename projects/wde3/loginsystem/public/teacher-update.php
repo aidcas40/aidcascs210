@@ -25,29 +25,24 @@ $inputs = [];
 
 if (is_post_request()) {
     $fields = [
-        'stud_age' => 'numeric',
-        'stud_email' => 'string | required | between: 1, 25',
-        'stud_cellnum' => 'numeric',
-        'stud_yearlvl' => 'string',
-        'stud_program' => 'string',
-        'stud_pic' => 'string'
+        'tchr_email' => 'string',
+        'tchr_cellnum' => 'string | between: 1, 7',
+        'tchr_department' => 'string',
+        'tchr_age' => 'numeric',
+        'tchr_pic' => 'string'
     ];
 
     // custom messages
     $messages = [
-        'stud_email' => [
+        'tchr_email' => [
             'required' => 'You need to enter in an email address.',
-        ],
-        'stud_yearlvl' => [
-            'required' => 'You need to enter in a year level.'
         ]
-
     ];
 
     [$inputs, $errors] = filter($_POST, $fields, $messages);
 
     if ($errors) {
-        redirect_with('teacher-update.php', [
+        redirect_with("teacher-update.php?tchr_id=$tchr_id", [
             'inputs' => $inputs,
             //escape_html($inputs),
             'errors' => $errors
