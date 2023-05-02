@@ -231,4 +231,51 @@ function update_user_password($username, $new_password)
     // Check if the update was successful
     return $stmt->rowCount() > 0;
 }
+
+function redirect_for_admin($url, $message) {
+    header("Location: $url?message=$message");
+    exit();
+}
+
+function get_user_picture() {
+    // Get the current user's username
+    $username = current_user();
+    
+    // Check if the user is logged in
+    if ($username) {
+        // Connect to the database
+        $conn = mysqli_connect("localhost:3307", "root", "", "auth");
+        //$conn = mysqli_connect("localhost:3307", "root", "", "auth");
+        
+        // Check if the connection was successful
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        // Prepare the SQL query
+        $sql = "SELECT picture FROM users WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        
+        // Bind the parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        
+        // Execute the query
+        mysqli_stmt_execute($stmt);
+        
+        // Get the result
+        mysqli_stmt_bind_result($stmt, $picture);
+        mysqli_stmt_fetch($stmt);
+        
+        // Close the statement and the connection
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        
+        // Return the user's picture
+        return $picture;
+    }
+    
+    // If the user is not logged in, return null
+    return null;
+}
+
 ?>

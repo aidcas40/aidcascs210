@@ -26,7 +26,7 @@ if (is_post_request()) {
         'crs_credits' => [
             'required' => 'Enter a Course Credits.'
         ],
-        'crs_proram' => [
+        'crs_program' => [
             'required' => 'Select a Course Program.'
         ]
     ];
@@ -41,11 +41,12 @@ if (is_post_request()) {
     }
 
     if (insert_course($inputs['crs_code'], $inputs['crs_title'], $inputs['crs_credits'], $inputs['crs_program'])) {
-
-        redirect_with_message(
-            'course-add.php',
-            'Successfully added course.'
-        );
+        
+        redirect_for_admin('course-add.php', 'Successfully added course.');
+        // redirect_with_message(
+        //     'course-add.php',
+        //     'Successfully added course.'
+        // );
     }
 
 } else if (is_get_request()) {

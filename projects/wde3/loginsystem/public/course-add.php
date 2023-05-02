@@ -8,8 +8,14 @@ require_login();
 
 <main id="main" class="main">
 
+<div id="admin_message">
+    <?php if (!empty($message)) : ?>
+        <div class="alert alert-success"><?php echo $message; ?></div>
+    <?php endif; ?>
+</div>
+
 <div class="pagetitle">
-  <h1>Form Elements</h1>
+  <h1>Add Courses</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -60,7 +66,7 @@ require_login();
               <label class="col-sm-2 col-form-label">Program:</label>
               <div class="col-sm-10">
                 <select class="form-select" name="crs_program" id="crs_program" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
+                  <option disabled selected>Open this select menu</option>
                   <?php
                     // Connect to the database and fetch the values from the "program" lookup table
                     $pdo = new PDO("mysql:host=localhost:3307;dbname=auth", "root", "");

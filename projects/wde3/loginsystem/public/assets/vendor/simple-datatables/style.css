@@ -107,13 +107,14 @@
 .datatable-table > tfoot > tr > th,
 .datatable-table > thead > tr > td,
 .datatable-table > thead > tr > th {
-	vertical-align: top;
+	vertical-align: middle;
+	text-align: center;
 	padding: 8px 10px;
 }
 
 .datatable-table > thead > tr > th {
 	vertical-align: bottom;
-	text-align: left;
+	text-align: center;
 	border-bottom: 1px solid #d9d9d9;
 }
 
@@ -125,7 +126,7 @@
 
 .datatable-table th {
 	vertical-align: bottom;
-	text-align: left;
+	text-align: center;
 }
 
 .datatable-table th a {

@@ -101,7 +101,7 @@ function insert_teacher(string $tchr_fname, string $tchr_lname, string $tchr_gen
 }
 
 /**
-* Insert student
+* Insert course
 *
 * @param string $crs_code
 * @param string $crs_title
