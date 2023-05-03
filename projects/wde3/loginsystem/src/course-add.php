@@ -9,8 +9,8 @@ $inputs = [];
 
 if (is_post_request()) {
     $fields = [
-        'crs_code' => 'string | required | between: 1, 10',
-        'crs_title' => 'string | required | between: 1, 40',
+        'crs_code' => 'string | required | between: 5, 10',
+        'crs_title' => 'string | required | between: 5, 40',
         'crs_credits' => 'int | required',
         'crs_program' => 'string | required',
     ];
@@ -18,10 +18,12 @@ if (is_post_request()) {
     // custom messages
     $messages = [
         'crs_code' => [
-            'required' => 'Enter a Course Code.'
+            'required' => 'Enter a Course Code.',
+            'between' => 'Course Code must be between 5 and 10 characters.'
         ],
         'crs_title' => [
-            'required' => 'Enter a Course Title.'
+            'required' => 'Enter a Course Title.',
+            'between' => 'Course Title must be between 5 and 40 characters.'
         ],
         'crs_credits' => [
             'required' => 'Enter a Course Credits.'

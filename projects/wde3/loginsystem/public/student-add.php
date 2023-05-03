@@ -119,6 +119,7 @@ require_login();
                   <option value="2nd Year">2nd Year</option>
                   <option value="Part Time">Part Time</option>
                 </select>
+                <small><?= $errors['stud_yearlvl'] ?? '' ?></small>
               </div>
             </div>
 
@@ -138,6 +139,7 @@ require_login();
                     }
                   ?>
                 </select>
+                <small><?= $errors['stud_program'] ?? '' ?></small>
               </div>
             </div>
 
@@ -146,7 +148,6 @@ require_login();
               <div class="col-sm-10">
                 <input class="form-control" type="file" name="stud_pic" id="stud_pic" accept="image/*" value="<?= $inputs['stud_pic'] ?? '' ?>"
                         class="form-control <?= error_class($errors, 'stud_pic') ?>">
-                <small> <?= $errors['stud_pic'] ?? '' ?></small>
               </div>
             </div>
 

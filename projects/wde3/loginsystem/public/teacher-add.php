@@ -123,6 +123,9 @@ require_login();
                   }
                   ?>
                 </select>
+                <small>
+                  <?= $errors['tchr_department'] ?? '' ?>
+                </small>
               </div>
             </div>
 

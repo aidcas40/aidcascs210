@@ -9,7 +9,9 @@ $data = mysqli_connect($host, $user, $password, $db);
 if ($_GET['crs_id']) {
 
     $crs_id = $_GET['crs_id'];
-    $sql = "SELECT * FROM course 
+    $sql = "SELECT c.crs_id, c.crs_code, c.crs_title, p.prog_name, c.crs_credits
+    FROM `course` c 
+    INNER JOIN `program` p ON p.prog_id=c.crs_program 
     WHERE crs_id = '$crs_id'";
 
     $result = mysqli_query($data, $sql);
@@ -27,7 +29,7 @@ if (is_post_request()) {
     // custom messages
     $messages = [
         'crs_credits' => [
-            'required' => 'You need to enter in the number of credits for the course.',
+            'required' => 'Must enter in a course credits to change.',
         ]
     ];
 
@@ -96,8 +98,7 @@ if (is_post_request()) {
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
-                                    Profile</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit</button>
                             </li>
 
                         </ul>
@@ -130,7 +131,7 @@ if (is_post_request()) {
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Program</div>
                                     <div class="col-lg-9 col-md-8">
-                                        <?php echo "{$info['crs_program']}" ?>
+                                        <?php echo "{$info['prog_name']}" ?>
                                     </div>
                                 </div>
 
@@ -151,7 +152,7 @@ if (is_post_request()) {
                                                 class="form-control <?= error_class($errors, 'crs_credits') ?>"
                                                 id="crs_credits" value="<?= $inputs['crs_credits'] ?? '' ?>">
                                             <small>
-                                                <?= $errors['credits'] ?? '' ?>
+                                                <?= $errors['crs_credits'] ?? '' ?>
                                             </small>
                                         </div>
                                     </div>

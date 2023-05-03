@@ -78,6 +78,7 @@ if($_GET['crs_id'])
               // output data of each row
               while($row = $result->fetch_assoc()) {
                 echo "<tr><th scope=\"row\">" . $row["crs_code"] . "</th><td>" 
+                . "<a href='course-update.php?crs_id={$row['crs_id']}'>"
                 . $row["crs_title"] . "</td><td>" 
                 . $row["prog_name"] . "</td><td>" 
                 . $row["crs_credits"]  . "</td><td class = 'table_td'>"

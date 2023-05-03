@@ -5,6 +5,9 @@ require_login();
 ?>
 
 <?php
+$errors = [];
+$inputs = [];
+
 $data = mysqli_connect($host, $user, $password, $db);
 
 $name = $_SESSION['username'];
@@ -34,6 +37,52 @@ if (isset($_POST['update-profile'])) {
 
   if ($resultUpdate) {
     redirect_for_admin('users-profile.php', 'Successfully updated account information.');
+  }
+
+}
+
+if (isset($_POST['change-password'])) {
+  $fields = [
+    'password' => 'string | required | secure',
+    'renewpassword' => 'string | required | same: password'
+  ];
+
+  // custom messages
+  $messages = [
+    'renewpassword' => [
+      'required' => 'Please enter the password again',
+      'same' => 'The password does not match'
+    ]
+  ];
+
+  [$inputs, $errors] = filter($_POST, $fields, $messages);
+
+  if ($errors) {
+    redirect_with('users-profile.php', [
+      'inputs' => $inputs,
+      'errors' => $errors
+    ]);
+  
+  } else if (is_get_request()) {
+    [$errors, $inputs] = session_flash('errors', 'inputs');
+  
+  } else {
+  
+    $username = current_user();
+    if (update_user_password($username, $inputs['password'])) {
+      redirect_with_message(
+        'user-profile.php',
+        'Successfully changed password.'
+      );
+    } else {
+      $errors = [
+        'message' => 'An error occurred while updating your password. Please try again.'
+      ];
+      redirect_with('user-profile.php', [
+        'errors' => $errors,
+        'inputs' => $_POST
+      ]);
+    }
   }
 
 }
@@ -76,10 +125,8 @@ if (isset($_POST['update-profile'])) {
             </h2>
             <h3>User</h3>
             <div class="social-links mt-2">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="<?php echo "{$info['social']}" ?>" class="facebook" target="_blank"><i
+                  class="bi bi-facebook"></i></a>
             </div>
           </div>
         </div>
@@ -141,8 +188,8 @@ if (isset($_POST['update-profile'])) {
                 <!-- Profile Edit Form -->
                 <form action="users-profile.php" method="post" enctype="multipart/form-data">
 
-                  <input name="id" type="text" class="form-control" id="id"
-                    value="<?php echo "{$info['id']}" ?>" hidden>
+                  <input name="id" type="text" class="form-control" id="id" value="<?php echo "{$info['id']}" ?>"
+                    hidden>
 
                   <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -201,28 +248,27 @@ if (isset($_POST['update-profile'])) {
                 <form>
 
                   <div class="row mb-3">
-                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="password" type="password" class="form-control" id="currentPassword">
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
                     <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="newpassword" type="password" class="form-control" id="newPassword">
+                      <input name="password" type="password" class="form-control" id="password">
                     </div>
+                    <small>
+                      <?= $errors['password'] ?? '' ?>
+                    </small>
                   </div>
 
                   <div class="row mb-3">
                     <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                      <input name="renewpassword" type="password" class="form-control" id="renewpassword">
                     </div>
+                    <small>
+                      <?= $errors['renewpassword'] ?? '' ?>
+                    </small>
                   </div>
 
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <button type="submit" name="change-password" class="btn btn-primary">Change Password</button>
                   </div>
                 </form><!-- End Change Password Form -->
 

@@ -7,7 +7,7 @@ if (is_post_request()) {
     $fields = [
         'stud_fname' => 'string | required | between: 1, 25',
         'stud_lname' => 'string | required | between: 1, 25',
-        'stud_gender' => 'string | required | between: 1, 28',
+        'stud_gender' => 'string | required',
         'stud_dob' => 'date | required',
         'stud_age' => 'numeric | required',
         'stud_email' => 'email | required | email | unique: student, stud_email',
@@ -19,8 +19,39 @@ if (is_post_request()) {
 
     // custom messages
     $messages = [
+        'stud_fname' => [
+            'required' => 'First name is required.',
+            'between' => 'First name must be between 1 and 25 characters.'
+        ],
+        'stud_lname' => [
+            'required' => 'Last name is required.',
+            'between' => 'Last name must be between 1 and 25 characters.'
+        ],
+        'stud_gender' => [
+            'required' => 'Student gender is required.'
+        ],
+        'stud_dob' => [
+            'required' => 'Must choose a date of birth.'
+        ],
+        'stud_age' => [
+            'required' => 'Must enter in an age.'
+        ],
         'stud_email' => [
-            'required' => 'You need to enter in an email'
+            'required' => 'Must enter in an email.',
+            'unique' => "This email already exists"
+        ],
+        'stud_cellnum' => [
+            'required' => 'Must enter in a phone number.',
+            'between' => 'Phone number must be 7 digits only.'
+        ],
+        'stud_enrolldate' => [
+            'required' => 'Must choose an enrollment date.'
+        ],
+        'stud_yearlvl' => [
+            'required' => 'Must choose a year level.'
+        ],
+        'stud_program' => [
+            'required' => 'Must choose a program.'
         ]
     ];
 

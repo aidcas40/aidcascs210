@@ -78,6 +78,7 @@ require_login();
                     }
                   ?>
                 </select>
+                <small><?= $errors['crs_program'] ?? '' ?></small>
               </div>
             </div>
 

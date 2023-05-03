@@ -320,7 +320,7 @@ $conn = mysqli_connect($host, $user, $password, $db);
 
       if ($resultDel) {
         //echo "Delete Success";
-        redirect_for_admin('student-list.php', 'Student Deleted Successfully');
+        redirect_for_admin('index_admin.php', 'Student Deleted Successfully');
       }
     }
     ?>

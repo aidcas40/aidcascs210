@@ -18,10 +18,32 @@ if (is_post_request()) {
     // custom messages
     $messages = [
         'tchr_fname' => [
-            'required' => "You need to enter the teacher's first name"
+            'required' => 'First name is required.',
+            'between' => 'First name must be between 1 and 25 characters.'
+        ],
+        'tchr_lname' => [
+            'required' => "Last name is required.",
+            'between' => 'Last name must be between 1 and 25 characters.'
+        ],
+        'stud_gender' => [
+            'required' => 'Student gender is required.'
+        ],
+        'tchr_dob' => [
+            'required' => 'Must choose a date of birth.'
+        ],
+        'tchr_age' => [
+            'required' => 'Must enter in an age.'
         ],
         'tchr_email' => [
+            'required' => 'Must enter in an email.',
             'unique' => "This email already exists"
+        ],
+        'tchr_cellnum' => [
+            'required' => 'Must enter in a phone number.',
+            'between' => 'Phone number must be 7 digits only.'
+        ],
+        'tchr_department' => [
+            'required' => 'Must enter choose a department.'
         ]
     ];
 

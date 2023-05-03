@@ -51,20 +51,6 @@ CREATE TABLE course
     crs_program       varchar(10) NOT NULL REFERENCES program(prog_id)
 );
 
-CREATE TABLE section
-(
-    sec_id            varchar(10) PRIMARY KEY,
-    sec_course        varchar(20) NOT NULL REFERENCES course(crs_id),
-    sec_teacher       int NOT NULL REFERENCES teacher(tchr_id)
-);
-
-CREATE TABLE enrollement
-(
-    enroll_id         int auto_increment PRIMARY KEY,
-    enroll_student    int NOT NULL REFERENCES student(stud_id),
-    enroll_section    varchar(10) NOT NULL REFERENCES section(sec_id)
-);
-
 /*==========Insert Table Statements=============*/
 INSERT INTO department VALUES ('AR01', 'Arts'), ('AS01', 'Arts and Science'), ('BU01', 'Business'),
 ('BM01', 'Business and Mathematics'), ('SC01', 'Science'), ('PE01', 'Primary Education'); 

@@ -80,6 +80,7 @@ if($_GET['tchr_id'])
               while($row = $result->fetch_assoc()) {
                 echo "<tr><th scope=\"row\">" . $row["tchr_id"] . "</th><td>"
                 . "<div style='display: flex; align-items: center;'><img src=\"" . $row["tchr_pic"] . "\" alt=\"Teacher Image\" style=\"width: 50px; height: 50px; border-radius: 50%; margin-right: 15px;\">" 
+                . "<a href='teacher-update.php?tchr_id={$row['tchr_id']}'>"
                 . $row["Name"] . "</div></td><td>" 
                 . $row["tchr_email"] . "</td><td>" 
                 . $row["tchr_cellnum"] . "</td><td>" 
