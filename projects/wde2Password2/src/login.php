@@ -35,8 +35,8 @@ if (is_post_request()) {
     }
 
     // login successfully
-    //redirect_to('index.php');
-    redirect_to('/aidcascs210/projects/wde3/html/index.html');
+    redirect_to('index.php');
+    //redirect_to('/aidcascs210/projects/wde3/html/index.html');
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
