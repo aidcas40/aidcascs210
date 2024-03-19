@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 $inputs = [];
 $errors = [];
 class Database
@@ -136,56 +135,3 @@ if (is_post_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
 ?>
-=======
-
-if (is_user_logged_in()) {
-    redirect_to('index.php');
-}
-
-$errors = [];
-$inputs = [];
-
-if (is_post_request()) {
-    $fields = [
-        'email' => 'email | required | email | exists: users, email'
-    ];
-
-    $messages = [
-        'email' => [
-            'required' => 'Please enter your email address',
-            'email' => 'Please enter a valid email address',
-            'exists' => 'This email is not registered'
-        ]
-    ];
-
-    [$inputs, $errors] = filter($_POST, $fields, $messages);
-
-    if ($errors) {
-        redirect_with('forgot_password.php', [
-            'inputs' => escape_html($inputs),
-            'errors' => $errors
-        ]);
-    }
-
-    $user = find_user_by_email($inputs['email']);
-
-    if ($user) {
-        $token = create_password_reset_token();
-        create_password_reset($inputs['email'], $token);
-        send_password_reset_email($user['email'], $token);
-    }
-
-    redirect_with_message(
-        'forgot_password.php',
-        'Please check your email to reset your password'
-    );
-} else if (is_get_request()) {
-    [$errors, $inputs] = session_flash('errors', 'inputs');
-}
-
-render('forgot_password.php', [
-    'errors' => $errors,
-    'inputs' => $inputs
-]);
-?>
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b

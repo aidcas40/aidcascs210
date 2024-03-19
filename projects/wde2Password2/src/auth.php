@@ -14,11 +14,7 @@ function find_user_by_username(string $username)
 
 function is_user_active($user)
 {
-<<<<<<< HEAD
     return (int) $user['active'] === 1;
-=======
-    return (int)$user['active'] === 1;
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
 }
 
 function login(string $username, string $password): bool
@@ -136,11 +132,7 @@ function find_unverified_user(string $activation_code, string $email)
 
     if ($user) {
         // already expired, delete the in active user with expired activation code
-<<<<<<< HEAD
         if ((int) $user['expired'] === 1) {
-=======
-        if ((int)$user['expired'] === 1) {
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
             delete_user_by_id($user['id']);
             return null;
         }
@@ -167,7 +159,6 @@ function activate_user(int $user_id): bool
 }
 
 /*============================== Forget Password Functions ==================================*/
-<<<<<<< HEAD
 
 function find_user_by_email(string $email)
 {
@@ -241,139 +232,5 @@ function update_user_password($username, $new_password)
     $stmt->execute();
     // Check if the update was successful
     return $stmt->rowCount() > 0;
-=======
-function create_password_reset_token(): string
-{
-    return bin2hex(random_bytes(16));
-}
-
-function find_user_by_email(string $email)
-{
-   $sql = 'SELECT username, password, active, email
-           FROM users
-           WHERE email=:email';
-
-   $statement = db()->prepare($sql);
-   $statement->bindValue(':email', $email);
-   $statement->execute();
-
-   return $statement->fetch(PDO::FETCH_ASSOC);
-}
-
-/*function save_password_reset_token(string $token, int $expiry): bool
-{
-    $sql = 'UPDATE users SET token = :token, password_reset_expiry = :expiry WHERE id = :id';
-    $statement = db()->prepare($sql);
-    $statement->bindValue(':token', $token);
-    $statement->bindValue(':expiry', date('Y-m-d H:i:s', time() + $expiry));
-    return $statement->execute();
-}*/
-
-
-function send_password_reset_email($email, $token)
-{
-    // create the reset link
-    $reset_link = APP_URL . "/reset_password.php?email=$email&token=$token";
-
-    // Create the transport
-    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-        ->setUsername('aidencastillo41@gmail.com')
-        ->setPassword('pbrsizrztfwtgdpl');
-
-    // Create the mailer using the transport
-    $mailer = new Swift_Mailer($transport);
-
-    // Create the message
-    $message = new Swift_Message();
-    $message->setSubject('Password reset request');
-    $message->setFrom(['aidencastillo41@gmail.com' => 'Reset Password']);
-    $message->setTo([$email]);
-    $message->setBody("Please click the following link to reset your password: $reset_link");
-
-    // Send the message
-    $result = $mailer->send($message);
-
-    return $result;
-}
-
-function render($template, $params = []) {
-    extract($params);
-    ob_start();
-    include __DIR__ . "/../views/{$template}.php";
-    return ob_get_clean();
-}
-
-/**
- * Create a new password reset record in the database
- *
- * @param string $email
- * @param string $token
- * @param int $expiry
- * @return bool
- */
-function create_password_reset(string $email, string $token, int $expiry = 1 * 24 * 60 * 60): bool
-{
-    $sql = 'UPDATE users SET token = :token, password_reset_expiry = :reset_expiry WHERE email = :email';
-
-    $statement = db()->prepare($sql);
-
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':token', $token);
-    $statement->bindValue(':reset_expiry', date('Y-m-d H:i:s', time() + $expiry));
-
-    return $statement->execute();
-}
-
-/**
- * Verify the validity of a password reset token
- * @param string $email
- * @param string $token
- * @param int $expiry The expiry time of the token in seconds
- * @return bool True if the token is valid, false otherwise
- */
-function verify_password_reset_token(string $email, string $token, int $expiry = 1 * 24 * 60 * 60): bool
-{
-    $sql = 'SELECT password_reset_expiry
-            FROM users
-            WHERE email = :email AND token = :token';
-
-    $statement = db()->prepare($sql);
-
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':token', $token);
-
-    if (!$statement->execute()) {
-        return false;
-    }
-
-    $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-    if (!$result || strtotime($result['password_reset_expiry']) < time()) {
-        return false;
-    }
-
-    return true;
-}
-
-/**
- * Reset the password for a user
- *
- * @param string $email The email associated with the user
- * @param string $password The new password to set
- * @return bool True if the password was reset successfully, false otherwise
- */
-function reset_password(string $email, string $password): bool
-{
-    $sql = 'UPDATE users
-            SET password = :password, token = NULL, password_reset_expiry = NULL
-            WHERE email = :email';
-
-    $statement = db()->prepare($sql);
-
-    $statement->bindValue(':email', $email);
-    $statement->bindValue(':password', password_hash($password, PASSWORD_BCRYPT));
-
-    return $statement->execute();
->>>>>>> f0a8d9797118f6c55fd71175daf6e2821372635b
 }
 ?>
